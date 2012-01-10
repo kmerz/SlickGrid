@@ -33,7 +33,7 @@
                     }
                 }
 
-                if (e.which == 67 && e.ctrlKey) {
+                if (e.which == 67 && (e.ctrlKey || e.metaKey)) {
                     ranges = _grid.getSelectionModel().getSelectedRanges();
                     if (ranges.length != 0) {
                         e.preventDefault();
@@ -43,7 +43,7 @@
                     }
                 }
 
-                if (e.which == 86 && e.ctrlKey) {
+                if (e.which == 86 && (e.ctrlKey || e.metaKey)) {
                     if (_copiedRanges) {
                         e.preventDefault();
                         clearCopySelection();
@@ -56,6 +56,7 @@
         }
 
         function markCopySelection(ranges) {
+            var columns = _grid.getColumns();
             var hash = {};
             for (var i = 0; i < ranges.length; i++) {
                 for (var j = ranges[i].fromRow; j <= ranges[i].toRow; j++) {
